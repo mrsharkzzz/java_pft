@@ -6,12 +6,12 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 
-import java.util.NoSuchElementException;
+
 
 public class ContactHelper extends HelperBase {
 
 
-    private By locator;
+
 
     public ContactHelper(WebDriver wd) {
         super(wd);
@@ -22,14 +22,10 @@ public class ContactHelper extends HelperBase {
         click(By.linkText("add new"));
     }
 
-    public void fillContactForm(ContactData contactData, boolean create) {
+    public void fillContactForm(ContactData contactData) {
         type(By.name("firstname"), contactData.getFirstname());
         type(By.name("lastname"), contactData.getLastname());
-        if (create) {
-            new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
-        } else {
-            Assert.assertFalse(isElementPresent(By.name("new_group")));
-        }
+
     }
 
     public void submitContactCreation() {
